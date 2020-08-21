@@ -1,0 +1,61 @@
+<!--index.wxml-->
+<import src="../../common/item.wxml"/>
+<view class="page">
+<view class='row'>
+<image class='image-search' src="../../imageIcon/sousuo.png"></image>
+  <input class='input' placeholder='请输入要查询的内容' placeholder-class="input-placeholder"  bindblur="getDataBindTap"/>
+  <button type="primary" size="mini" plain="true" bindtap="handleinput"> 确定</button>
+  </view>
+<view class="page-section page-section-spacing swiper">
+            <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}"
+                    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+                <block wx:for="{{background}}" wx:for-index="idx"  wx:key="*this">
+                    <swiper-item>
+                        <view class="swiper-item {{item}}">
+                        <image wx:if="{{idx==0}}" class='photo1' bindtap="jump1" src='../../res/test1_kb.jpg'></image>
+                        <image wx:elif="{{idx==1}}" class='photo2' bindtap="jump2" src='../../res/test2_kb.jpg'></image>
+                        <image wx:else class='photo3' bindtap="jump3" src='../../res/test3_kb.jpg'></image>
+                        </view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <view class="row-container">
+    <view class="header" >
+      <view class="left">
+        <view class="bilibili-index-sprite bilibili-index-hot"></view>
+        <image class="icon_command" src="../../imageIcon/tuijian.png"></image>
+        <text>热门推荐</text>
+      </view>
+      <view class="right hot">
+        <view class="bilibili-index-sprite bilibili-index-ranking"></view>
+        <text bindtap="toHotList">更多</text>
+      </view>
+    </view>
+    <view class="content-wrapper">
+      <block wx:for="{{hotList}}" wx:key="id">
+        <!-- 使用热门推荐模板，传入当前循环对象item -->
+        <template is="jiefItem1" data="{{...item}}"/>
+      </block>
+    </view>
+     <view class="row-container">
+    <view class="header">
+      <view class="left">
+        <view class="bilibili-index-sprite bilibili-index-hot"></view>
+        <image class="icon_command" src="../../imageIcon/hot.png"></image>
+        <text>最新发布</text>
+        <view class="right hot">
+        <view class="bilibili-index-sprite bilibili-index-ranking"></view>
+        <text>下翻发现更多精彩(#^.^#)</text>
+      </view>
+      </view>
+    </view>
+    <view class="content-wrapper">
+      <block wx:for="{{newList}}" wx:key="id">
+        <!-- 使用热门推荐模板，传入当前循环对象item -->
+        <template is="jiefItem1" data="{{...item}}"/>
+      </block>
+    </view>
+  </view>
+</view>
+</view>

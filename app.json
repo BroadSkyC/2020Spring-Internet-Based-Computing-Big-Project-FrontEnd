@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mine/mine",
+    "pages/partiton/partiton",
+    "pages/publish/publish",
+    "pages/collect/collect",
+    "pages/release/release",
+    "pages/history/history",
+    "pages/video/video",
+    "pages/basketball_block/basketball_block",
+    "pages/soccer_block/soccer_block",
+    "pages/volleyball_block/volleyball_block",
+    "pages/pingpong_block/pingpong_block",
+    "pages/computer_block/computer_block",
+    "pages/fit_block/fit_block",
+    "pages/badminton_block/badminton_block",
+    "pages/yoga_block/yoga_block",
+    "pages/running_block/running_block",
+    "pages/swimming_block/swimming_block",
+    "pages/hotlist/hotlist",
+    "pages/equipment_block/equipment_block",
+    "pages/else_block/else",
+    "pages/comment/comment",
+    "pages/search/search",
+    "pages/dianzan/dianzan",
+    "pages/fans/fans",
+    "pages/guanzhu/guanzhu",
+    "components/modal"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "竞技指南",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "selectedColor": "blue",
+    "color": "black",
+    "backgroundColor": "white",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "imageIcon/zhuye.png",
+        "selectedIconPath": "imageIcon/zhuyexuanzhong.png"
+      },
+      {
+        "pagePath": "pages/partiton/partiton",
+        "text": "分区",
+        "iconPath": "imageIcon/fenqu.png",
+        "selectedIconPath": "imageIcon/fenquxuanzhong.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "imageIcon/wode.png",
+        "selectedIconPath": "imageIcon/wodexuanzhong.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,57 @@
+<view class="ripple" style="{{rippleStyle}}"></view>
+<view class="container" bindtouchstart="containerTap">
+   <view class="userinfo">
+     <button class="btn1" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"  > 
+     <image class='btnImg' src='../../imageIcon/niming.png'></image>
+     <view>一键登录</view>
+      </button>  
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="order" >
+    <text class="myorder-text">我的信息</text>
+  </view>
+  <view class="line"></view>
+  <view class="navs">
+    <block wx:for-items="{{orderItems}}" wx:key="name" wx:for-index="idx">
+      <view class="nav-item"  data-type="{{item.name}}" data-typeid="{{item.typeId}}">
+        <image src="{{item.imageurl}}" class="nav-image" bindtap="handleJump" data-yes="{{item.typeId}}"/>
+        <text wx:if="{{idx==0}}" bindtap="showFensi">{{user.fansNum}}粉丝</text>
+        <text wx:else bindtap="showGuanZhu">{{user.concern}}关注</text>
+      </view>
+    </block>
+  </view>
+<view class="line"></view>
+<view class="line"></view>
+  <view class="person-list">
+    <view class="list-item" bindtap="collect_handler">
+      <image class="item-image" src="../../imageIcon/shoucang1.png"></image>
+      <text class="item-text">我的收藏</text>
+    </view>
+    <view class="list-item" bindtap="release_handler">
+      <image class="item-image" src="../../imageIcon/fabu1.png"></image>
+      <text class="item-text">我发布的</text>
+    </view>
+    <view class="list-item" bindtap="history_handler">
+      <image class="item-image" src="../../imageIcon/guankan.png"></image>
+      <text class="item-text">观看记录</text>
+    </view>
+    <view class="list-item" bindtap="comment_handler">
+      <image class="item-image" src="../../imageIcon/pinglun1.png"></image>
+      <text class="item-text">我的热评</text>
+    </view>
+    <view class="list-item" bindtap="upload_handler">
+      <image class="item-image" src="../../imageIcon/shangchuan.png"></image>
+      <text class="item-text">上传视频</text>
+    </view>
+    <view class="list-item" bindtap="others_handler">
+      <image class="item-image" src="../../imageIcon/dianzan.png"></image>
+      <text class="item-text">我赞过的</text>
+    </view>
+  </view>
+  <view class="line"></view>
+   <view class="line"></view>
+</view>
+

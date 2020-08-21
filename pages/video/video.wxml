@@ -1,0 +1,96 @@
+<!--pages/video/video.wxml-->
+<view class="section tc">
+  <text decode="{{true}}" space="{{true}}" class="title">{{result.title}}</text>
+  <video id="myVideo" bindtimeupdate="timeUpdate" src="{{result.videoUrl}}" binderror="videoErrorCallback" bindtap ="start"
+  danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+  <view class="videoPage">
+  <button class="videoshare" open-type="share" bindtap="onShareAppMessage">
+     <view class="video-btn">
+      <view class="video-pic">
+       <image src="../../imageIcon/share.png"></image>
+      </view>
+      <text>分享</text>
+    </view> 
+  </button>
+  <button class="videocollect" bindtap="addCollect">
+  <view class="video-btn">
+      <view class="video-pic">
+       <image src="../../imageIcon/stars.png"></image>
+      </view>
+      <text>收藏</text> 
+    </view> 
+  </button>
+  <button class="videodownload" bindtap="addLikes">
+  <view class="video-btn">
+      <view class="video-pic">
+       <image src="../../imageIcon/dianzan.png"></image>
+      </view>
+      <text>点赞</text> 
+    </view> 
+  </button>
+</view>
+  <view class="flex-wrp1" style="flex-direction:row;">
+     <view class='input_border1'>
+    <input class="input" bindblur="bindInputBlur" placeholder="有什么想说的？"/>
+    <image class="icon1" bindtap="bindSendDanmu" src="../../imageIcon/danmu.png"></image>
+    </view>
+    </view>
+        </view>
+    <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">简介</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">弹幕评论</view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height: {{winHeight?winHeight+'px':'auto'}}" bindchange="bindChange">
+<swiper-item>
+    <scroll-view scroll-y="true" style="height: {{winHeight?winHeight+'px':'auto'}}">
+  <view class="videoinfo">
+<view class="videoinfo-title">
+<image wx:if="{{result.playNum>=1000}}" class="icon1" src="../../imageIcon/hot.png"></image>
+ <text>{{result.title}}</text>
+ </view>
+ <view class="video-info">
+   <image class="video-info-play-pic" src="../../imageIcon/playnum.png"></image>
+   <view class="video-info-play-number">{{result.playNum+playCount}}</view>
+   <image class="video-info-play-pic" src="../../imageIcon/jianyi.png"></image>
+   <text class="video-info-play-number">{{result.commentNum+commentTime}}</text>
+   <image class="video-info-play-pic" src="../../imageIcon/dianzan-2.png"></image>
+   <view class="video-info-play-number">{{result.likes+likeCount}}</view>
+ </view>
+ <view class="video-introduce">
+      <text>{{result.info}}</text>
+ </view>
+</view>
+<view class="video-upinfo">
+      <view class="flex-cont flex-simple">
+        <view class="s-img"><image src="{{userInfo.img}}"></image></view>
+        <view class="flex-item">
+          <text class="s-tit">{{userInfo.name}}</text>
+          <text class="s-desc">{{videoExistedTime}}天前投递</text>
+           
+        </view>
+        <button wx:if="{{!isGuanZhu}}" plain style="display:block; color: #EA6CAF; border-color: #EA6CAF; margin-left:200rpx" class="marginview" bindtap="guanzhu" data-upId="{{userInfo.userid}}">关注</button>
+        <button wx:else plain style="display:block; color: #A9A9A9; border-color: #A9A9A9; margin-left:200rpx" class="marginview">已关注</button>
+        
+      </view>
+</view>
+</scroll-view>
+</swiper-item>
+<swiper-item>
+<scroll-view scroll-y="true" style="height: {{winHeight?winHeight+'px':'auto'}}">
+<view class='allMessage'>
+ <view class='comment-item' wx:for="{{danmuList}}" wx:key="id" wx:for-index="idx">
+            <view class='comment-person'>
+            <image class='comment-person-avatar' src='{{item.userImg}}'></image>
+             <view class='comment-person-name ellipsis' style="width:90px">{{item.userName}}</view>
+               <view class='comment-text'>{{item.text}}</view>
+            </view>
+          <view class='comment-person-info ellipsis'>
+               <image class='comment-person-icon' src='../../imageIcon/dianzan-3.png' bindtap="goodDanmu"
+                data-yes="{{item.id}}" ></image>
+                <view class='comment-time ellipsis'>{{item.likes+likeDanmu}}赞</view>
+              </view>
+          </view>
+          </view>
+</scroll-view>
+</swiper-item>
+</swiper>

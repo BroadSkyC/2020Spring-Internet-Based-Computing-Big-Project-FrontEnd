@@ -1,0 +1,126 @@
+<!--pages/publish.wxml-->
+<import src="../../common/footer.wxml" />
+<import src="../../common/header.wxml" />
+<import src="../../components/modal"/>
+<view class="container">
+      <template is="header" data="{{title: '发布视频'}}"/>
+      <image class='icon1' src="../../imageIcon/shipin.png"></image>
+      <view class="section ">
+                <view class="section__title">视频标题：{{inputValue}}</view>
+                <view class='input_border1'>
+                <input  bindinput="getTitle" placeholder="请输入视频标题"/>
+                </view>
+             <view class="title-bg">视频描述:</view>
+             <view class='input_border2'>
+    <textarea  placeholder="请输入相关描述" bindblur="getInfo" auto-height />
+    </view>
+    <view class="section__title">发布到：</view>
+          <view class='picker_border'>
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array_section}}">
+                <view class="picker">
+                    选择板块：{{array_section[index]}}
+                </view>
+            </picker>
+            </view>
+    <view class="section__title">版块细分：</view>
+          <view class='picker_border'>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{basket_section}}" wx:if="{{index==0}}">
+                <view class="picker" >
+                    选择子板块：{{basket_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{football_section}}" wx:elif="{{index==1}}">
+                <view class="picker" >
+                    选择子板块：{{football_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{volley_section}}" wx:elif="{{index==2}}">
+                <view class="picker" >
+                    选择子板块：{{volley_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{ping_section}}" wx:elif="{{index==3}}">
+                <view class="picker" >
+                    选择子板块：{{ping_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{com_section}}" wx:elif="{{index==4}}">
+                <view class="picker" >
+                    选择子板块：{{com_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{fit_section}}" wx:elif="{{index==5}}">
+                <view class="picker" >
+                    选择子板块：{{fit_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{run_section}}" wx:elif="{{index==6}}">
+                <view class="picker" >
+                    选择子板块：{{run_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{swim_section}}" wx:elif="{{index==7}}">
+                <view class="picker" >
+                    选择子板块：{{swim_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{yoga_section}}" wx:elif="{{index==8}}">
+                <view class="picker" >
+                    选择子板块：{{yoga_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{bad_section}}" wx:elif="{{index==9}}">
+                <view class="picker" >
+                    选择子板块：{{bad_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{equ_section}}" wx:elif="{{index==10}}">
+                <view class="picker" >
+                    选择子板块：{{equ_section[sub_section_index]}}
+                </view>
+            </picker>
+            <picker bindchange="bindPickerSubChange" value="{{sub_section_index}}" range="{{else_section}}" wx:else>
+                <view class="picker" >
+                    选择子板块：{{else_section[sub_section_index]}}
+                </view>
+            </picker>
+    </view>
+    </view>
+    <view class="section__title">添加视频</view>
+    <view class="flex-wrp1" style="flex-direction:row;">
+    <image class="icon2" bindtap="chooseVideo" src="../../imageIcon/tianjia.png">
+  </image>
+  </view>
+<block wx:if="{{src != ''}}">
+  <video src="{{src}}"></video>
+</block>
+<view class="page-body">
+    <view class="page-body-wrapper">
+      <form bindsubmit="openLocation">
+        <view class="page-body-form">
+          <view class="images-wrapper">
+          <text class="images-text">请选择封面</text>
+          <view class="images-list">
+            <block wx:for-items="{{imageList}}" wx:for-item="image" wx:key="*this">
+              <image src="{{image}}" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
+            </block>
+            <image class="images-image images-image-plus" src="../../imageIcon/plus.png"  bindtap="chooseImage"></image>
+          </view>
+        </view>
+        </view>
+      </form>
+    </view>
+  </view>
+ <button class="btn1"  bindtap="submit"  > 
+     <image class='btnImg' src='../../imageIcon/submit.png'></image>
+     <view>确认发布</view>
+      </button> 
+ <modal id='popup' 
+      title='发布成功' 
+      content='已同步到分区板块' 
+      btn_no='返回' 
+      btn_ok='查看'
+      bind:error="_error"  
+      bind:success="_success">
+  </modal>
+    </view>
